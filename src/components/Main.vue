@@ -2,7 +2,7 @@
   <div>
     <Swiper v-if="carousel_img.length > 0" interval="4500">
       <Slide v-for="(item,index) in carousel_img" :key="index">
-        <a href="" :title="item.title"><img :src="item.src"></a>
+        <router-link :to="{path:`/article/${item.id}`,query:{ID:item.id,title:item.title}}" :title="item.title"><img :src="item.src"></router-link>
       </Slide>
     </Swiper>
     <div id="newsContents" class="content-layout">
@@ -10,12 +10,12 @@
           <el-row type="flex" class="row-bg" justify="space-around">
             <el-col :span="8"><a href="" :title="item.title"><img :src="item.src"></a></el-col>
             <el-col :span="14">
-              <div class="media-title"><a href="" :title="item.title">{{item.title}}</a></div>
+              <div class="media-title"><router-link :to="{path:`/article/${item.id}`,query:{ID:item.id,title:item.title}}" :title="item.title">{{item.title}}</router-link> </div>
               <p class="mui-ellipsis">{{item.time}}</p><p class="new-tag">{{item.tag}}</p>
             </el-col>
           </el-row>
       </div>
-      <a class="more-btn" href="">查看更多</a>
+      <router-link to="/state" class="more-btn">查看更多</router-link>
     </div>
     <div class="content-layout">
       <div class="article">
@@ -29,8 +29,8 @@
       <div class="article">
         <h4 class="content-title">協會公告</h4>
         <div class="articleArea">
-          <div class="mui-table-view-cell">
-            <a class="mui-navigate-right" href=""><p class="artcleList">小蠻腰科技大會即將隆重召開</p><i class="fa fa-chevron-right"></i></a>
+          <div class="mui-table-view-cell" v-for="(item,index) in news2_contents" v-if='index==(news2_contents.length-1)'>
+            <router-link :to="{path:`/article/${item.id}`,query:{ID:item.id,title:item.title}}" :title="item.title" class="mui-navigate-right" ><p class="artcleList">{{item.title}}</p><i class="fa fa-chevron-right"></i></router-link>
           </div>
         </div>
       </div>
@@ -40,13 +40,13 @@
         <h4 class="content-title">行業動態</h4>
         <div class="articleArea">
           <div class="articleimgArea">
-			      <a href="view.php?aid=66">
+			      <router-link :to="{path:`/article/${news2_contents[0].id}`,query:{ID:news2_contents[0].id,title:news2_contents[0].title}}">
               <img :src="news2_contents[0].src">
               <p class="articleimgTitle">{{news2_contents[0].title}}</p>
-            </a>
+            </router-link>
           </div>
           <div class="mui-table-view-cell" v-for="(item,index) in news2_contents" v-if='index!=0'>
-            <a class="mui-navigate-right" href=""><p class="artcleList">{{item.title}}</p><i class="fa fa-chevron-right"></i></a>
+            <router-link :to="{path:`/article/${item.id}`,query:{ID:item.id,title:item.title}}" :title="item.title" class="mui-navigate-right" ><p class="artcleList">{{item.title}}</p><i class="fa fa-chevron-right"></i></router-link>
           </div>
         </div>
       </div>
@@ -66,28 +66,34 @@ export default {
     return{
       carousel_img:[
         {
+          id:1,
           title:'會長張文生出席2017廣州國際創新節 推動臺灣青年創業實習',
-          src:'http://www.ccsifa.org/style/images/banner033.png'
+          src:'http://i2.bvimg.com/640851/8e4d317c495b13c9.png'
         },{
+          id:2,
           title:'會長張文生帶隊訪問臺灣政治大學 共探金融科技發展',
-          src:'http://www.ccsifa.org/style/images/banner-xieh.png'
+          src:'http://i2.bvimg.com/640851/6a327fdd7a0bc457.png'
         },{
+          id:3,
           title:'協會會長張文生即將出席小蠻腰科技大會',
-          src:'http://www.ccsifa.org/style/images/banner1.png'
+          src:'http://i2.bvimg.com/640851/db3599a5c87236d1.png'
         }
       ],
       news_contents:[
         {
+          id:6,
           src:'http://www.ccsifa.org/uploads/180323/2-1P32316404X56.jpg',
           tag:'协会动态',
           time:'2018-03-23',
           title:'中華兩岸互金協會會長張文生：臺灣金融科技的瞭望者'
         },{
+          id:7,
           src:'http://www.ccsifa.org/uploads/180316/2-1P316101233158.jpg',
           tag:'协会动态',
           time:'2018-03-16',
           title:'廣州臺協天河分會全體大會召開 張文生當選理事'
         },{
+          id:8,
           src:'http://www.ccsifa.org/uploads/180312/2-1P31210344WB.png',
           tag:'协会动态',
           time:'2018-03-16',
@@ -96,18 +102,27 @@ export default {
       ],
       news2_contents:[
         {
+          id:9,
           src:'http://www.ccsifa.org/uploads/180409/2-1P40912050Y12.jpg',
           title:'央行下了鐵命令，6月30日大終結！'
         },{
+          id:10,
           title:'LinkedIn聯合創始人發起區塊鏈專案Hub，已獲矽谷科技高管和機構'
         },{
+          id:11,
           title:'近500家P2P平臺被淘汰 2018備案年迎來決勝局'
         },{
+          id:12,
           title:'網貸平臺年報比拼：借款更小額分散 但逾期率上升'
         },{
+          id:13,
           title:'美國保護主義可能引發數字貿易戰'
         },{
+          id:14,
           title:'美電商巨頭欲進軍銀行業 支付業務與中國差距大'
+        },{
+          id:15,
+          title:'小蠻腰科技大會即將隆重召開'
         }
       ]
     }
