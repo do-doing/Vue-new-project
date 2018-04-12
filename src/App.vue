@@ -292,7 +292,10 @@ ul.point-ul li:before{
 .img-center img{
   width: 100%;
 }
-
+.el-message{
+  min-width:auto;
+  top:50px;
+}
 .badge-list li{
   display: inline-block;
   background: #f5f5f5;

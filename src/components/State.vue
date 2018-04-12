@@ -47,7 +47,7 @@
         news2_contents:[
           {
             id:9,
-            src:'http://www.ccsifa.org/uploads/180409/2-1P40912050Y12.jpg',
+            src:'http://i2.bvimg.com/640851/e41cef7c3f8dd510.jpg',
             title:'央行下了鐵命令，6月30日大終結！'
           },{
             id:10,

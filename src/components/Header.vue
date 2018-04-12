@@ -19,7 +19,7 @@
               <router-link to="/news"><span @click="menuShow = false">行業動態</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="policy_page.html">政策法規</a>
+              <router-link to="/By Kevin"><span @click="menuShow = false">政策法規</span></router-link>
             </li>
             <li class="menu-item">
               <router-link to="/apply"><span @click="menuShow = false">入會申請</span></router-link>

@@ -9,21 +9,23 @@
           <div class="article">
             <h4 class="content-title">留言</h4>
             <div class="articleArea" style="padding:10px">
-              <el-form label-width="100px" size="mini">
-                <el-form-item label="First Name*">
-                  <el-input></el-input>
+              <el-form :model="userInfo" ref="userInfo" :rules="rules" label-width="100px" size="mini">
+                <el-form-item label="First Name" prop="fname">
+                  <el-input v-model="userInfo.fname"></el-input>
                 </el-form-item>
-                <el-form-item label="Last Name*">
-                  <el-input></el-input>
+                <el-form-item label="Last Name" prop="lname">
+                  <el-input v-model="userInfo.lname"></el-input>
                 </el-form-item>
-                <el-form-item label="Email*">
-                  <el-input></el-input>
+                 <el-form-item label="Email" prop="email">
+                  <el-input v-model="userInfo.email"></el-input>
                 </el-form-item>
-                <el-form-item label="Website*">
-                  <el-input></el-input>
+                
+                <el-form-item label="留言内容" prop="desc" size="medium">
+                  <el-input type="textarea" v-model="userInfo.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="danger" plain round>立即發送</el-button>
+                  <el-button @click="submitForm('userInfo')" type="danger" plain round>立即發送</el-button>
+                  <el-button @click="resetForm('userInfo')"  plain round>重置</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -41,7 +43,6 @@
                 <a><span class="fa fa-qq"></span></a>
                 <a><span class="fa fa-weibo"></span></a>
               </div>
-              
             </div>
           </div>
         </div>
@@ -50,7 +51,49 @@
 
 <script>
   export default {
-    
+    data(){
+      return{
+        userInfo:{
+          fname:'',
+          lname:'',
+          email:'',
+          website:'',
+          desc:''
+        },
+        rules: {
+          fname: [
+            { required: true, message: '请输入First Name', trigger: 'blur' },
+          ],
+          lname: [
+            { required: true, message: '请输入Last Name', trigger: 'blur' },
+          ],
+          email: [
+            { required: true, message: '请输入Email', trigger: 'blur' },
+          ],
+          desc: [
+            { required: true, message: '请输入留言内容', trigger: 'blur' },
+          ],
+        }
+      }
+    },
+    methods:{
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$message({
+              type: 'success',
+              message: (this.userInfo.fname||this.userInfo.lname)+'您好! 信息发送成功,等待回复吧'
+            });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
+    }
   }
 </script>
 

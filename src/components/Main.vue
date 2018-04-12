@@ -21,7 +21,7 @@
       <div class="article">
       	<h4 class="content-title">協會簡介</h4>
         <div class="articleArea">
-        	<p class="artcleText">協會旨在通過綜合互聯網金融行業發展資源，搭建臺灣同行與內地同行之間合作交流的平臺，實現協會成員優勢互補、合作共贏、協同創新、規範自律，促進兩岸互聯網金融教育及交流，推動行業健康有序發展。</p>
+        	<router-link to="/about"><p class="artcleText">協會旨在通過綜合互聯網金融行業發展資源，搭建臺灣同行與內地同行之間合作交流的平臺，實現協會成員優勢互補、合作共贏、協同創新、規範自律，促進兩岸互聯網金融教育及交流，推動行業健康有序發展。</p></router-link>
         </div>
       </div>
     </div>
@@ -82,19 +82,19 @@ export default {
       news_contents:[
         {
           id:6,
-          src:'http://www.ccsifa.org/uploads/180323/2-1P32316404X56.jpg',
+          src:'http://i2.bvimg.com/640851/09b7e1a851c0fee7.jpg',
           tag:'协会动态',
           time:'2018-03-23',
           title:'中華兩岸互金協會會長張文生：臺灣金融科技的瞭望者'
         },{
           id:7,
-          src:'http://www.ccsifa.org/uploads/180316/2-1P316101233158.jpg',
+          src:'http://i2.bvimg.com/640851/3ed12b02c8be7d2b.jpg',
           tag:'协会动态',
           time:'2018-03-16',
           title:'廣州臺協天河分會全體大會召開 張文生當選理事'
         },{
           id:8,
-          src:'http://www.ccsifa.org/uploads/180312/2-1P31210344WB.png',
+          src:'http://i2.bvimg.com/640851/3ad4b209b820ef22.png',
           tag:'协会动态',
           time:'2018-03-16',
           title:'重磅！國台辦發佈31條惠臺措施'
@@ -103,7 +103,7 @@ export default {
       news2_contents:[
         {
           id:9,
-          src:'http://www.ccsifa.org/uploads/180409/2-1P40912050Y12.jpg',
+          src:'http://i2.bvimg.com/640851/e41cef7c3f8dd510.jpg',
           title:'央行下了鐵命令，6月30日大終結！'
         },{
           id:10,
