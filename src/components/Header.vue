@@ -1,35 +1,35 @@
 <template>
   <div>
     <el-row type="flex" class="header" justify="space-between">
-      <el-col :span="2"><el-button type="text" @click="menuShow = !menuShow"><i class="fa fa-bars"></i></el-button></el-col>
-      <el-col :span="18"><a href="index.html"><img src="../assets/logo.png" width="220px"></a></el-col>
-      <el-col :span="2"><i class="fa fa-search"></i></el-col>
+      <el-col :span="2"><a @click="menuShow = !menuShow"><i class="fa fa-bars fa-lg"></i></a></el-col>
+      <el-col :span="18"><router-link to="/"><img src="../assets/logo.png" width="220px" @click="menuShow = false"></router-link></el-col>
+      <el-col :span="2"><a @click="openSearch"><i class="fa fa-search fa-lg"></i></a></el-col>
     </el-row>
     <transition name="el-zoom-in-top">
       <div v-show="menuShow" id="menu-wrapper" class="menu-wrapper">
         <div id="menu" class="menu">
           <ul class="mui-table-view">
             <li class="menu-item">
-              <a href="about_page.html" class="active">協會簡介</a>
+              <router-link to="/about"><span @click="menuShow = false">協會簡介</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="state_page.html">協會動態</a>
+              <router-link to="/state"><span @click="menuShow = false">協會動態</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="news_page.html">行業動態</a>
+              <router-link to="/news"><span @click="menuShow = false">行業動態</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="policy_page.html">政策法規</a>
+              <router-link to="/By Kevin"><span @click="menuShow = false">政策法規</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="apply_page.html">入會申請</a>
+              <router-link to="/apply"><span @click="menuShow = false">入會申請</span></router-link>
             </li>
             <li class="menu-item">
-              <a href="contact_page.html">聯繫我們</a>
+              <router-link to="/contact"><span @click="menuShow = false">聯繫我們</span></router-link>
             </li>
           </ul>
         </div>
-        <div id="menu-backdrop" class="menu-backdrop"></div>
+        <div @click="menuShow = !menuShow" id="menu-backdrop" class="menu-backdrop"></div>
       </div>
     </transition>
   </div>
@@ -44,17 +44,30 @@ export default {
     }
   },
   methods:{
-    toggleMenu:function () {
-
+    openSearch() {
+      this.$prompt('请输入关键字', '搜索', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '暂时还没有搜索功能(⊙o⊙)？ ' 
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消输入'
+        });       
+      });
     }
-
   }
 }
 
 </script>
 <style scoped >
   .header{
-    padding:5px 0;
+    position:fixed;
+    height:50px;
     align-items:center;
     top: 0;
     -webkit-box-shadow: 0 1px 6px #ccc;
@@ -86,14 +99,14 @@ export default {
   display: none;
 }
 
-.menu-open .menu-backdrop {
+.menu-backdrop {
   position: fixed;
   top: 50px;
   bottom: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   display: block;
-  z-index: 998;
+  z-index: 2;
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -102,7 +115,7 @@ export default {
   top: 50px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 3;
   /*text-align: center;*/
   /*background-color: #333;*/
   width: 100%;
@@ -110,7 +123,9 @@ export default {
 
 
 .menu {
+  position:relative;
   width: 100%;
+  z-index:3;
 }
 
 .menu .mui-table-view-inverted {
@@ -149,7 +164,7 @@ export default {
 }
 
 
-#menu-wrapper .menu-item a.active {
+#menu-wrapper .menu-item a.router-link-active {
   color: #fff;
   background: #f41652;
   border-radius: 12px;
